@@ -20,7 +20,9 @@ export class War {
         this.saxonArmy[randomSaxon].receiveDamage(this.vikingArmy[randomViking].strength);
 
         if(this.saxonArmy[randomSaxon].health <= 0){
-            this.saxonArmy.pop()
+            this.saxonArmy = this.saxonArmy.filter((saxon, index)=> {
+                return saxon !== this.saxonArmy[index];
+            })
             return "A Saxon has died in combat"
         }
     }
@@ -32,7 +34,9 @@ export class War {
         this.vikingArmy[randomViking].receiveDamage(this.saxonArmy[randomSaxon].strength);
 
         if(this.vikingArmy[randomViking].health <= 0){
-            this.vikingArmy.pop();
+            this.vikingArmy = this.vikingArmy.filter((viking, index)=> {
+                return viking !== this.vikingArmy[index];
+            })
         } else {
             return `${this.vikingArmy[randomViking].name} has received ${this.saxonArmy[randomSaxon].strength} points of damage`;
         }
